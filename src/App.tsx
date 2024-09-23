@@ -20,9 +20,9 @@ const App: React.FC = () => {
   }, [bands]);
 
   return (
-    <div>
-      <BandForm onAddBand={addBand} />
+    <div className="bg-tahiti h-screen flex flex-col items-center  p-* justify-center">
       <BandList bands={bands} />
+      <BandForm onAddBand={addBand} />
     </div>
   );
 };

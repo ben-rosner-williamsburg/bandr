@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Band } from './Band';
+import { Band } from '../types/Band';
 
 interface BandFormProps {
   onAddBand: (band: Band) => void;
@@ -28,18 +28,20 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="flex flex-col space-y-4 p-8" onSubmit={handleSubmit}>
       <input
         type="text"
         placeholder="Band Name"
         value={bandName}
         onChange={(e) => setBandName(e.target.value)}
+        className="border p-2 rounded"
         required
       />
       <input
         type="date"
         value={date}
         onChange={(e) => setDate(e.target.value)}
+        className="border p-2 rounded"
         required
       />
       <input
@@ -47,14 +49,16 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
         placeholder="Venue"
         value={venue}
         onChange={(e) => setVenue(e.target.value)}
+        className="border p-2 rounded"
         required
       />
       <textarea
         placeholder="Comments"
         value={comments}
         onChange={(e) => setComments(e.target.value)}
+        className="border p-2 rounded"
       />
-      <button type="submit">Add Band</button>
+      <button className="bg-midnight text-white p-4" type="submit">Add Band</button>
     </form>
   );
 };
