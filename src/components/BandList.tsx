@@ -7,7 +7,7 @@ interface BandListProps {
 
 const BandList: React.FC<BandListProps> = ({ bands }) => {
   return (
-      <div className="grid gap-6">
+      <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
         {bands.map((band) => (
           <div
             key={band.id}
