@@ -12,7 +12,7 @@ const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
         {bands.map((band) => (
           <div
             key={band.id}
-            className="p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg"
+            className="relative p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg"
           >
             <h2 className="text-xl font-bold mb-2">{band.name}</h2>
             <p className="text-gray-600 mb-2">
