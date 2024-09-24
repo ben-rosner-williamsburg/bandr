@@ -3,9 +3,10 @@ import { Band } from '../types/Band';
 
 interface BandListProps {
   bands: Band[];
+  onDeleteBand: (id: number) => void;
 }
 
-const BandList: React.FC<BandListProps> = ({ bands }) => {
+const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
   return (
       <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
         {bands.map((band) => (
@@ -25,6 +26,12 @@ const BandList: React.FC<BandListProps> = ({ bands }) => {
                 <span className="font-semibold">Comments:</span> {band.comments}
               </p>
             )}
+            <button
+            className="absolute top-4 right-4 text-red-500 hover:text-red-700"
+            onClick={() => onDeleteBand(band.id)}
+          >
+            Delete
+          </button>
           </div>
         ))}
       </div>

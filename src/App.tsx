@@ -9,6 +9,10 @@ const App: React.FC = () => {
   const addBand = (newBand: Band) => {
     setBands((prevBands) => [...prevBands, newBand]);
   };
+  
+  const deleteBand = (id: number) => {
+    setBands((prevBands) => prevBands.filter((band) => band.id !== id));
+  };
 
   useEffect(() => {
     const storedBands = JSON.parse(localStorage.getItem('bands') || '[]');
@@ -21,7 +25,7 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-tahiti h-screen flex flex-col items-center  p-* justify-center">
-      <BandList bands={bands} />
+      <BandList bands={bands} onDeleteBand={deleteBand} />
       <BandForm onAddBand={addBand} />
     </div>
   );
