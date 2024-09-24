@@ -7,16 +7,27 @@ interface BandListProps {
 
 const BandList: React.FC<BandListProps> = ({ bands }) => {
   return (
-    <div className="p-8 max-w-lg mx-auto bg-white rounded-lg shadow-lg">
-    <h1 className="text-2xl font-bold text-center mb-6">Bands I've Seen</h1>
-      <ul className="text-center m--8">
+      <div className="grid gap-6">
         {bands.map((band) => (
-          <li key={band.id}>
-            {band.name} - {band.date} @ {band.venue}
-          </li>
+          <div
+            key={band.id}
+            className="p-6 bg-white rounded-lg shadow-md border border-gray-200"
+          >
+            <h2 className="text-xl font-bold mb-2">{band.name}</h2>
+            <p className="text-gray-600 mb-2">
+              <span className="font-semibold">Date:</span> {band.date}
+            </p>
+            <p className="text-gray-600 mb-2">
+              <span className="font-semibold">Venue:</span> {band.venue}
+            </p>
+            {band.comments && (
+              <p className="text-gray-600">
+                <span className="font-semibold">Comments:</span> {band.comments}
+              </p>
+            )}
+          </div>
         ))}
-      </ul>
-    </div>
+      </div>
   );
 };
 
