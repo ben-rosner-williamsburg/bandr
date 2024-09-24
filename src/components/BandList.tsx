@@ -12,7 +12,7 @@ const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
         {bands.map((band) => (
           <div
             key={band.id}
-            className="p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg"
+            className="relative p-6 bg-white rounded-lg shadow-md border border-gray-200 hover:shadow-lg"
           >
             <h2 className="text-xl font-bold mb-2">{band.name}</h2>
             <p className="text-gray-600 mb-2">
@@ -28,10 +28,12 @@ const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
             )}
             <button
             className="absolute top-4 right-4 text-red-500 hover:text-red-700"
-            onClick={() => onDeleteBand(band.id)}
-          >
-            Delete
-          </button>
+            onClick={() => {
+              if (window.confirm("Are you sure you want to delete this band?")) {
+                onDeleteBand(band.id)
+              }
+            }}
+          >Delete</button>
           </div>
         ))}
       </div>
