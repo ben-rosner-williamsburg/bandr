@@ -58,7 +58,7 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
         onChange={(e) => setComments(e.target.value)}
         className="border p-2 rounded"
       />
-      <button className="bg-midnight text-white p-4" type="submit">Add Band</button>
+      <button className="bg-tahiti text-2xl py-2 px-4 font-bold mb-2 rounded hover:shadow-lg" type="submit">Add Band</button>
     </form>
   );
 };
