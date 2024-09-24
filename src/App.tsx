@@ -25,8 +25,13 @@ const App: React.FC = () => {
 
   return (
     <div className="bg-tahiti h-screen flex flex-col items-center  p-* justify-center">
-      <BandList bands={bands} onDeleteBand={deleteBand} />
-      <BandForm onAddBand={addBand} />
+      <div className="bg-white p-8 max-w-lg w-full mx-auto bg-white rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold text-center mb-6">Bandr</h1>
+        <BandForm onAddBand={addBand} />
+      </div>
+      <div className="mt-8 w-full max-w-lg">
+        <BandList bands={bands} onDeleteBand={deleteBand} />
+     </div>
     </div>
   );
 };
