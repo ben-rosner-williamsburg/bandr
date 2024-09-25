@@ -14,6 +14,13 @@ const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
             key={band.id}
             className="relative text-center p-6 bg-tahiti rounded-lg shadow-md border border-gray-200 hover:shadow-lg"
           >
+          {band.imageUrl && (
+            <img
+              src={band.imageUrl}
+              alt={band.name}
+              className="w-full h-48 object-cover rounded-md mb-4"
+            />
+          )}
             <h2 className="text-xl font-bold mb-2">{band.name}</h2>
             <p className="text-gray-600 mb-2">
               <span className="font-semibold">Date:</span> {band.date}
