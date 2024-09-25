@@ -4,4 +4,5 @@ export interface Band {
   date: string;
   venue: string;
   comments?: string;
+  imageUrl?: string;
 }
