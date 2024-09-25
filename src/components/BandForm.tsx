@@ -10,6 +10,7 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
   const [date, setDate] = useState('');
   const [venue, setVenue] = useState('');
   const [comments, setComments] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -19,12 +20,14 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
       date,
       venue,
       comments,
+      imageUrl,
     };
     onAddBand(newBand);
     setBandName('');
     setDate('');
     setVenue('');
     setComments('');
+    setImageUrl('');
   };
 
   return (
@@ -56,6 +59,13 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
         placeholder="Comments"
         value={comments}
         onChange={(e) => setComments(e.target.value)}
+        className="border p-2 rounded"
+      />
+      <input
+        type="text"
+        placeholder="Image URL"
+        value={imageUrl}
+        onChange={(e) => setImageUrl(e.target.value)} // New input field for the image URL
         className="border p-2 rounded"
       />
       <button className="bg-tahiti text-2xl py-2 px-4 font-bold mb-2 rounded hover:shadow-lg" type="submit">Add Band</button>
