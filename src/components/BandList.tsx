@@ -8,7 +8,7 @@ interface BandListProps {
 
 const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
   return (
-    <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
       {bands.map((band) => (
         <div
           key={band.id}
@@ -35,7 +35,7 @@ const BandList: React.FC<BandListProps> = ({ bands, onDeleteBand }) => {
             </p>
           )}
           <button
-            className="absolute top-4 right-4 text-red-500 hover:text-red-700 hover:shadow-lg z-10"
+            className="absolute align-bottom right-4 text-red-500 hover:text-red-700 hover:shadow-lg z-10"
             onClick={() => {
               onDeleteBand(band.id);
             }}

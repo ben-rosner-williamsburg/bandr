@@ -24,12 +24,12 @@ const App: React.FC = () => {
   }, [bands]);
 
   return (
-    <div className="bg-tahiti-dark h-screen flex flex-col items-center  p-* justify-center">
-      <div className="bg-yellow p-8 max-w-lg w-full mx-auto bg-white rounded-lg shadow-lg">
-        <h1 className="text-5xl font-bold font-sans-graphik text-2xl text-orange text-center mb-6">Bandr</h1>
+    <div className="bg-tahiti-dark p-8 h-auto min-h-screen flex flex-col items-center justify-start">
+      <div className="bg-yellow max-w-3xl w-full mx-auto bg-white rounded-lg shadow-lg">
+        <h1 className="text-5xl font-bold p-2 text-center mb-6 text-orange text-center mb-6">Bandr</h1>
         <BandForm onAddBand={addBand} />
       </div>
-      <div className="mt-8 w-full max-w-lg">
+      <div className="mt-8 w-full max-w-3xl overflow-y-auto">
         <BandList bands={bands} onDeleteBand={deleteBand} />
      </div>
     </div>
