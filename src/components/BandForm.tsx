@@ -21,7 +21,7 @@ const fetchImage = async (name: string) => {
   setLoadingImage(true);
     try {
       const response = await axios.get(
-        `https://api.unsplash.com/search/photos?query=${name}&client_id=${UNSPLASH_ACCESS_KEY}&per_page=1`
+        `https://api.unsplash.com/search/photos?query=${name}+music&client_id=${UNSPLASH_ACCESS_KEY}&per_page=1`
       );
       const image = response.data.results[0];
       if (image) {
