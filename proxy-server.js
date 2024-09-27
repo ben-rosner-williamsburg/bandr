@@ -14,7 +14,9 @@ if (!SERP_API_KEY) {
 }
 
 // Allow CORS
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173'
+}));
 
 app.get('/api/search', async (req, res) => {
   const { query } = req.query; // Get search query from request

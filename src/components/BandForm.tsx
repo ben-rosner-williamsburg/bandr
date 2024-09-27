@@ -6,7 +6,6 @@ interface BandFormProps {
   onAddBand: (band: Band) => void;
 }
 
-const SERP_API_KEY = import.meta.env.VITE_SERP_API_KEY;
 const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
   const [bandName, setBandName] = useState('');
   const [date, setDate] = useState('');
@@ -15,13 +14,10 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [loadingImage, setLoadingImage] = useState(false);
 
-
-const fetchImage = async (name: string) => {
-  setLoadingImage(true);
+  const fetchImageFromProxy = async (name: string) => {
+    setLoadingImage(true);
     try {
-      const response = await axios.get(
-        `https://serpapi.com/search.json?q=${name}&tbm=isch&api_key=${SERP_API_KEY}`
-      );
+      const response = await axios.get(`http://localhost:5001/api/search?query=${name}`);
       const image = response.data.images_results[0];
       if (image) {
         setImageUrl(image.thumbnail);
@@ -29,15 +25,17 @@ const fetchImage = async (name: string) => {
         setImageUrl('');
       }
     } catch (error) {
-      console.error('Error fetching image from Unsplash:', error);
+      console.error('Error fetching image from proxy:', error);
     } finally {
       setLoadingImage(false);
     }
   };
 
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async(e: React.FormEvent) => {
     e.preventDefault();
+
+    await fetchImageFromProxy(bandName);
     const newBand: Band = {
       id: Date.now(), // Simple unique ID
       name: bandName,
@@ -62,7 +60,6 @@ const fetchImage = async (name: string) => {
         value={bandName}
         onChange={(e) => {
           setBandName(e.target.value)
-          fetchImage(e.target.value);
         }}
         className="border p-2 rounded"
         required
