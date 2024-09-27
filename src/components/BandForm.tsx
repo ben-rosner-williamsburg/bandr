@@ -6,8 +6,7 @@ interface BandFormProps {
   onAddBand: (band: Band) => void;
 }
 
-const UNSPLASH_ACCESS_KEY = "DhoxnUs2ViQredA7q8_jRpf0fVixuaGLzgWa6u5pLPs";
-
+const SERP_API_KEY = import.meta.env.VITE_SERP_API_KEY;
 const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
   const [bandName, setBandName] = useState('');
   const [date, setDate] = useState('');
@@ -16,16 +15,16 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
   const [imageUrl, setImageUrl] = useState('');
   const [loadingImage, setLoadingImage] = useState(false);
 
-3
+
 const fetchImage = async (name: string) => {
   setLoadingImage(true);
     try {
       const response = await axios.get(
-        `https://api.unsplash.com/search/photos?query=${name}+music&client_id=${UNSPLASH_ACCESS_KEY}&per_page=1`
+        `https://serpapi.com/search.json?q=${name}&tbm=isch&api_key=${SERP_API_KEY}`
       );
-      const image = response.data.results[0];
+      const image = response.data.images_results[0];
       if (image) {
-        setImageUrl(image.urls.small);
+        setImageUrl(image.thumbnail);
       } else {
         setImageUrl('');
       }
