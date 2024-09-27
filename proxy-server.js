@@ -1,9 +1,17 @@
-const express = require('express');
-const axios = require('axios');
-const cors = require('cors');
+import express from 'express';
+import axios from 'axios';
+import cors from 'cors';
+import dotenv from 'dotenv';
+
+dotenv.config();
 const app = express();
 
-const SERP_API_KEY = import.meta.env.VITE_SERP_API_KEY // Use your actual SerpAPI key here
+const SERP_API_KEY = process.env.SERP_API_KEY // Use your actual SerpAPI key here
+
+if (!SERP_API_KEY) {
+  console.error('Error: SERP_API_KEY is not defined. Make sure to add it to your .env file.');
+  process.exit(1); // Exit the process if the API key is missing
+}
 
 // Allow CORS
 app.use(cors());
