@@ -15,8 +15,15 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    const storedBands = JSON.parse(localStorage.getItem('bands') || '[]');
-    setBands(storedBands);
+    const storedBands = localStorage.getItem('bands');
+    if (storedBands) {
+      try {
+        const parsedBands: Band[] = JSON.parse(storedBands);
+        setBands(parsedBands);
+      } catch (error) {
+        console.error('Error parsing bands from localStorage:', error);
+      }
+    }
   }, []);
   
   useEffect(() => {
