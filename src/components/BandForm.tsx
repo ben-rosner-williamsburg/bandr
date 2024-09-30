@@ -18,11 +18,11 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
     setLoadingImage(true);
     try {
       const response = await axios.get(`http://localhost:5001/api/search?query=${name}`);
-      const image = response.data.images_results[0];
+      const image = response.data.images_results[0]; // Ensure you are getting a valid image
       if (image) {
-        setImageUrl(image.thumbnail);
+        setImageUrl(image.thumbnail); // Correctly set the image URL
       } else {
-        setImageUrl('');
+        setImageUrl(''); // Set to empty string if no image is found
       }
     } catch (error) {
       console.error('Error fetching image from proxy:', error);
@@ -31,27 +31,34 @@ const BandForm: React.FC<BandFormProps> = ({ onAddBand }) => {
     }
   };
 
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
 
-  const handleSubmit = async(e: React.FormEvent) => {
-    e.preventDefault();
+  // Fetch the image and wait until the image URL is set
+  await fetchImageFromProxy(bandName);
 
-    await fetchImageFromProxy(bandName);
-    const newBand: Band = {
-      id: Date.now(), // Simple unique ID
-      name: bandName,
-      date,
-      venue,
-      comments,
-      imageUrl,
-    };
-    onAddBand(newBand);
-    setBandName('');
-    setDate('');
-    setVenue('');
-    setComments('');
-    setImageUrl('');
+  // Create the new band object AFTER imageUrl is set
+  const newBand: Band = {
+    id: Date.now(),
+    name: bandName,
+    date,
+    venue,
+    comments,
+    imageUrl, // Ensure this is set correctly after fetching
   };
 
+  // Pass the band with imageUrl to the parent component
+  onAddBand(newBand);
+
+  // Reset form fields AFTER newBand is created and added
+  setBandName('');
+  setDate('');
+  setVenue('');
+  setComments('');
+  setImageUrl(''); // Now it's safe to reset imageUrl
+};
+
+  
   return (
     <form className="flex flex-col space-y-4 p-8" onSubmit={handleSubmit}>
       <input
