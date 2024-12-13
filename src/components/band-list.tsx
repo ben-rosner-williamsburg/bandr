@@ -13,9 +13,19 @@ interface Band {
   rating: number
 }
 
+const mockBands: Band[] = [
+  { id: '1', name: 'The Beatles', datesSeen: ['1969-01-30'], venue: 'Apple Corps rooftop', rating: 5 },
+  { id: '2', name: 'Queen', datesSeen: ['1985-07-13'], venue: 'Wembley Stadium', rating: 5 },
+  { id: '3', name: 'Pink Floyd', datesSeen: ['1994-10-15'], venue: 'Earls Court', rating: 4 },
+]
+
 export function BandList() {
   const [searchQuery, setSearchQuery] = useState('')
-  // Fetch bands data here or pass it as a prop
+  const [bands] = useState<Band[]>(mockBands)
+
+  const filteredBands = bands.filter(band => 
+    band.name.toLowerCase().includes(searchQuery.toLowerCase())
+  )
 
   return (
     <Card className="w-full max-w-4xl mx-auto mt-8">
@@ -29,8 +39,15 @@ export function BandList() {
         />
       </CardHeader>
       <CardContent>
-        <ScrollArea className="h-[600px]">
-          {/* Map through your bands data and render each band */}
+        <ScrollArea className="h-[400px]">
+          {filteredBands.map(band => (
+            <div key={band.id} className="mb-4 p-4 border rounded">
+              <h3 className="text-lg font-semibold">{band.name}</h3>
+              <p>Venue: {band.venue}</p>
+              <p>Dates Seen: {band.datesSeen.join(', ')}</p>
+              <p>Rating: {band.rating}/5</p>
+            </div>
+          ))}
         </ScrollArea>
       </CardContent>
     </Card>
