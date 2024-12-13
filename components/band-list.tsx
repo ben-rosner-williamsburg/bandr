@@ -41,12 +41,14 @@ export function BandList() {
       <CardContent>
         <ScrollArea className="h-[400px]">
           {filteredBands.map(band => (
-            <div key={band.id} className="mb-4 p-4 border rounded">
-              <h3 className="text-lg font-semibold">{band.name}</h3>
-              <p>Venue: {band.venue}</p>
-              <p>Dates Seen: {band.datesSeen.join(', ')}</p>
-              <p>Rating: {band.rating}/5</p>
-            </div>
+            <Card key={band.id} className="mb-4 p-4" variant="secondary">
+              <CardTitle className="text-lg">{band.name}</CardTitle>
+              <CardContent className="pt-2">
+                <p>Venue: {band.venue}</p>
+                <p>Dates Seen: {band.datesSeen.join(', ')}</p>
+                <p>Rating: {band.rating}/5</p>
+              </CardContent>
+            </Card>
           ))}
         </ScrollArea>
       </CardContent>
