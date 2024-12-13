@@ -1,5 +1,5 @@
-import { BandList } from '@/components/band-list'
-import { Header } from '@/components/header'
+import { BandList } from '../components/band-list'
+import { Header } from '../components/header'
 
 export default function HomePage() {
   return (
