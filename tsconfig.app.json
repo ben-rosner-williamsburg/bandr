@@ -20,5 +20,5 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "proxy-server.js"]
+  "include": ["src", "proxy-server.js", "app", "components"]
 }
