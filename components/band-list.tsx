@@ -14,7 +14,7 @@ interface Band {
 }
 
 const mockBands: Band[] = [
-  { id: '1', name: 'The Beatles', datesSeen: ['1969-01-30'], venue: 'Apple Corps rooftop', rating: 5 },
+  { id: '1', name: 'Phish', datesSeen: ['2012-12-28', '2013-12-28', '2016-12-28', '2017-07-21', '2017-12-28', '2018-12-28', '2023-12-28'], venue: 'Madison Square Garden', rating: 5 },
   { id: '2', name: 'Queen', datesSeen: ['1985-07-13'], venue: 'Wembley Stadium', rating: 5 },
   { id: '3', name: 'Pink Floyd', datesSeen: ['1994-10-15'], venue: 'Earls Court', rating: 4 },
 ]
